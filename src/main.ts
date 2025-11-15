@@ -1,6 +1,5 @@
 import './assets/css/main.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import './assets/js/xlsx.full.min.js'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
