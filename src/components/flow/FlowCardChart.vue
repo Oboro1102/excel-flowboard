@@ -46,9 +46,13 @@ const chartType = ref([
     text: '圓餅圖',
   },
 ])
+const linkDataSource = computed(() => sourceData.value[0]?.data.sheetSource.selectedSheet)
 const columnOptions = computed(() =>
   sourceData.value[0]
-    ? Object.keys(sourceData.value[0].data.output[0]).map((item) => ({ text: item, value: item }))
+    ? Object.keys(linkDataSource.value[0]).map((item) => ({
+        text: item,
+        value: item,
+      }))
     : [],
 )
 const chartStageVisible = ref(false)
@@ -75,11 +79,11 @@ const generateChart = () => {
       ? [
           {
             name: y,
-            data: sourceData.value[0]?.data.output.map((item: { [y: string]: number }) => item[y]),
+            data: linkDataSource.value.map((item: { [y: string]: number }) => item[y]),
           },
         ]
-      : sourceData.value[0]?.data.output.map((item: { [x: string]: number }) => item[x]),
-    labels: ['pie'].includes(type) ? sourceData.value[0]?.data.output.map(() => x) : [],
+      : linkDataSource.value.map((item: { [x: string]: number }) => item[x]),
+    labels: ['pie'].includes(type) ? linkDataSource.value.map(() => x) : [],
     legend: {
       show: false,
     },
@@ -96,7 +100,7 @@ const generateChart = () => {
     },
     colors: generateRandomColor(
       ['pie'].includes(type)
-        ? sourceData.value[0]?.data.output.map((item: { [x: string]: number }) => item[x]).length
+        ? linkDataSource.value.map((item: { [x: string]: number }) => item[x]).length
         : 1,
     ),
     dataLabels: {
@@ -110,7 +114,7 @@ const generateChart = () => {
       borderColor: 'var(--color-siteBg)',
     },
     xaxis: {
-      categories: sourceData.value[0]?.data.output.map((item: { [x: string]: number }) => item[x]),
+      categories: linkDataSource.value.map((item: { [x: string]: number }) => item[x]),
       title: {
         text: x,
         style: {
@@ -183,6 +187,9 @@ onMounted(async () => {
         v-if="sourceData.length > 0 && sourceData[0]?.type !== 'FlowCardExcel'"
         class="text-error text-xs"
         >連結元件類型錯誤，請連結Excel 資料庫元件</span
+      >
+      <span v-if="columnOptions.length < 1" class="text-error text-xs"
+        >請先設定 Excel 資料庫的工作表並進行節點的連接</span
       >
     </template>
     <div class="wrap--gap grid grid-cols-2">

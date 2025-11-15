@@ -74,7 +74,7 @@ watch(selectedSheet, (value) => {
         <i class="bi bi-filetype-xls leading-none" />
         <i class="bi bi-filetype-xlsx leading-none" />
       </span>
-      <span class="text-xs"><strong class="text-main text-sm">點擊</strong>上傳檔案</span>
+      <span class="text-xs"><strong class="text-main text-sm">點擊</strong>載入檔案</span>
       <input
         type="file"
         hidden
