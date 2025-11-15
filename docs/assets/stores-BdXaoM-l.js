@@ -1,1 +1,0 @@
-import{Lt as e,V as t}from"./index-DRu-u0-8.js";import{t as n}from"./commonFunction-C8bSJ9S_.js";const r=t(`global`,()=>{let t=e(sessionStorage.getItem(`a7b3c9d1e5f8`)?n(sessionStorage.getItem(`a7b3c9d1e5f8`),`z2y8x4w6v1u9`):``);return{userInfo:t,updateUser:()=>{t.value=n(sessionStorage.getItem(`a7b3c9d1e5f8`),`z2y8x4w6v1u9`)}}});export{r as t};

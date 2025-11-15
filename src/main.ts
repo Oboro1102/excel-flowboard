@@ -318,6 +318,9 @@ async function enableMocking() {
     const { worker } = await import('./mocks/browser.js')
     return worker.start({
         onUnhandledRequest: 'bypass',
+        serviceWorker: {
+            url: '/excel-flowboard/mockServiceWorker.js',
+        },
     })
 }
 enableMocking().then(() => {
