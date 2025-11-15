@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+@import '@/assets/css/_keyframes.css';
+@import '@/assets/css/_vueTransition.css';
+
+@theme {
+  --font-sans:
+    'Noto Sans TC', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --color-siteBg: #edf0f2;
+  --color-siteBgSub: #adadad;
+  --color-black: #232323;
+  --color-main: #0055ff;
+  --color-mainLight: #4d9aff;
+  --color-mainDeep: #0049e6;
+  --color-sub: #800ecc;
+  --color-note: #849ec0;
+  --color-noteDeep: #5d6970;
+  --color-noteLight: #96a2bc;
+  --color-divide: #e3eaf0;
+  --color-divideDeep: #7f97b3;
+  --color-secondary: #4b5a7d;
+  --color-secondaryLight: #8e9ab4;
+  --color-success: #37c680;
+  --color-successLight: #42d7a9;
+  --color-warning: #ffbb00;
+  --color-error: #e53935;
+  --color-errorLight: #e57373;
+  --color-info: #009cf9;
+  --color-placeholder: #7f97b3;
+  --color-linkline: #0055ff;
+  --radius-site: 0.375rem;
+}
+
+html,
+body {
+  @apply bg-siteBg h-full min-h-dvh text-black;
+}
+
+button {
+  @apply cursor-pointer disabled:cursor-not-allowed;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  @apply rounded-xl;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+[draggable='true'] {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.loading:after {
+  @apply block size-5 rounded-full border-[3px] border-transparent border-y-white;
+  content: ' ';
+  animation: spin 1.5s linear infinite;
+}
+
+.loading--sm:after {
+  @apply size-8 rounded-full border-2;
+}
+
+.animate {
+  @apply transition-all duration-200;
+}
+
+.radius {
+  @apply rounded-site;
+}
+
+.wrap {
+  @apply p-4;
+}
+
+.wrap--gap {
+  @apply gap-4;
+}
+
+.panel {
+  @apply rounded-site absolute z-50 flex w-fit bg-white p-1 shadow-md;
+}
+
+.card__wrap {
+  @apply rounded-site flex grow flex-col gap-2.5 bg-white px-4.5 pt-2 pb-3.5 shadow-md;
+}
+.card__title {
+  @apply text-noteDeep text-sm font-semibold;
+}
+
+.form__label {
+  @apply text-sm;
+}
+.form__label--whitMessage {
+  @apply inline-flex items-baseline gap-1;
+}
