@@ -1,10 +1,3 @@
-import { icon } from '@primeuix/themes/aura/avatar'
-
-// 內部開發辨識使用
-const FESessionKeyMap = {
-  name: 'a7b3c9d1e5f8',
-  encodeKey: 'z2y8x4w6v1u9',
-}
 export const handlerStyleIn = {
   width: '8px',
   height: '20px',

@@ -15,14 +15,14 @@ const router = useRouter()
     <template #form>
       <div class="wrap--gap flex flex-col">
         <h1
-          class="from-main to-sub bg-gradient-to-br bg-clip-text text-center text-7xl! leading-relaxed font-black! text-transparent"
+          class="from-main to-sub bg-linear-to-br bg-clip-text text-center text-7xl! leading-relaxed font-black! text-transparent"
         >
           Oops!
         </h1>
         <p class="text-2xl font-medium">
           您欲前往的頁面<strong class="text-error">不存在</strong>或<strong class="text-error"
             >無權訪問</strong
-          >，如有問題請聯絡管理員<span class="inline-block rotate-[10deg]">！</span>
+          >，如有問題請聯絡管理員<span class="inline-block rotate-10">！</span>
         </p>
         <Button label="回到首頁" @click="router.push({ name: 'Index' })" />
       </div>

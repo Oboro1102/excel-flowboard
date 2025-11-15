@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent, onMounted } from 'vue'
+import { ref, defineAsyncComponent } from 'vue'
 import { ConnectionMode, useVueFlow, VueFlow, type Node, type Edge } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
 import { panels } from '@/utils/dataMap'
@@ -33,7 +33,7 @@ const FlowEdgeLine = defineAsyncComponent({
   loader: () => import('@/components/flow/FlowEdgeLine.vue'),
   loadingComponent: LoadingArea,
 })
-const { addEdges, toObject, fromObject } = useVueFlow()
+const { addEdges } = useVueFlow()
 // 流程圖相關
 const flowInstance = ref<any | null>(null)
 const nodes = ref<Node[]>([])
@@ -74,31 +74,15 @@ const boardZoom = (type: 'in' | 'out' | 'fit' = 'in') => {
     }
   }
 }
-import { useGlobalStore } from '@/stores/index'
-const globalStore = useGlobalStore()
-const getBoardData = async () => {
-  const existData = sessionStorage.getItem('boardConfigData')
-  if (existData) {
-    await fromObject(JSON.parse(existData))
-    globalStore.boardConfigData = JSON.parse(existData)
-  }
-}
-// const saveBoard = () => {
-//   globalStore.saveBoard(JSON.stringify(toObject()))
-// }
 import useDragAndDrop from '@/composable/useDnD'
 const { onDragOver, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
-
-onMounted(() => {
-  getBoardData()
-})
 </script>
 
 <template>
   <MenuTop />
   <main class="relative h-dvh w-dvw" @drop="onDrop">
-    <PanelUnits root-class="panel top-4 right-4 z-[51]!" />
-    <div class="panel right-4 bottom-4 z-[51]!">
+    <PanelUnits root-class="panel top-4 right-4 z-51!" />
+    <div class="panel right-4 bottom-4 z-51!">
       <Button
         v-for="({ label, icon, actionKey }, index) in panels.control"
         :key="index"
@@ -110,16 +94,6 @@ onMounted(() => {
         @click="boardZoom(actionKey as 'out' | 'in' | 'fit')"
       />
     </div>
-    <!-- <div class="panel right-34 bottom-4 z-[51]!">
-      <Button
-        text
-        size="small"
-        severity="secondary"
-        icon="bi bi-floppy"
-        v-tooltip.top="'儲存工作區'"
-        @click="saveBoard"
-      />
-    </div> -->
     <VueFlow
       ref="flowInstance"
       v-model:nodes="nodes"

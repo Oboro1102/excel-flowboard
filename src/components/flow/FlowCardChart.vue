@@ -2,7 +2,7 @@
 import LayoutFlowCard from '@/layout/LayoutFlowCard.vue'
 import { Button, Select, FloatLabel, useToast } from 'primevue'
 import ApexCharts from 'apexcharts'
-import { ref, toRefs, computed, watch, onMounted } from 'vue'
+import { ref, toRefs, computed, watch } from 'vue'
 import { Handle, Position, useNodeConnections, useNodesData, useVueFlow } from '@vue-flow/core'
 import { useTimeoutFn } from '@vueuse/core'
 import { handlerStyleIn } from '@/utils/dataMap'
@@ -25,12 +25,20 @@ const connections = useNodeConnections({
   handleType: 'target',
 })
 const sourceData = useNodesData(() => connections.value.map((connection) => connection.source))
-const isValidConnection = computed(() =>
-  sourceData.value.length > 0
-    ? sourceData.value[0]?.type === 'FlowCardExcel' && sourceData.value[0].data.output
-    : false,
+const linkDataSource = computed(() =>
+  sourceData.value[0] ? sourceData.value[0].data.sheetSource.selectedSheet : [],
 )
-// 圖表相關
+const columnOptions = computed(() =>
+  sourceData.value[0]
+    ? Object.keys(linkDataSource.value[0]).map((item) => ({
+        text: item,
+        value: item,
+      }))
+    : [],
+)
+const isValidConnection = computed(() =>
+  sourceData.value[0] ? sourceData.value[0].type === 'FlowCardExcel' : false,
+)
 const chartConfig = ref({ type: '', x: '', y: '' })
 const chartType = ref([
   {
@@ -46,15 +54,6 @@ const chartType = ref([
     text: '圓餅圖',
   },
 ])
-const linkDataSource = computed(() => sourceData.value[0]?.data.sheetSource.selectedSheet)
-const columnOptions = computed(() =>
-  sourceData.value[0]
-    ? Object.keys(linkDataSource.value[0]).map((item) => ({
-        text: item,
-        value: item,
-      }))
-    : [],
-)
 const chartStageVisible = ref(false)
 const chartStage = ref()
 const chart = ref()
@@ -151,22 +150,6 @@ watch(connections, () => {
   chartStage.value = undefined
   chartStageVisible.value = false
 })
-
-// 存檔相關
-import { useGlobalStore } from '@/stores/index'
-const globalStore = useGlobalStore()
-const existNodeData = computed(() =>
-  globalStore.boardConfigData
-    ? globalStore.boardConfigData.nodes.find((item: { id: string }) => item.id === id.value)
-    : null,
-)
-onMounted(async () => {
-  if (existNodeData.value) {
-    const { config } = existNodeData.value.data.chartData
-    Object.assign(chartConfig.value, config)
-    generateChart()
-  }
-})
 </script>
 
 <template>
@@ -183,9 +166,7 @@ onMounted(async () => {
       </div>
     </template>
     <template #titleAdditional>
-      <span
-        v-if="sourceData.length > 0 && sourceData[0]?.type !== 'FlowCardExcel'"
-        class="text-error text-xs"
+      <span v-if="sourceData.length > 0 && !isValidConnection" class="text-error text-xs"
         >連結元件類型錯誤，請連結Excel 資料庫元件</span
       >
       <span v-if="columnOptions.length < 1" class="text-error text-xs"

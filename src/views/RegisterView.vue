@@ -3,7 +3,6 @@ import { ref, computed, defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import { FloatLabel, InputText, Password, Button, Message, useToast } from 'primevue'
 import { API } from '@/api/index'
-// import { encodeString } from '@/utils/commonFunction.ts'
 import LoadingArea from '@/components/LoadingArea.vue'
 const LayoutLogin = defineAsyncComponent({
   loader: () => import('@/layout/LayoutLogin.vue'),
@@ -40,8 +39,6 @@ const register = async () => {
   try {
     loading.value = true
     const loginInfo = await API.AUTH.POST_REGISTER(user.value)
-    console.log(loginInfo)
-
     if (loginInfo.data.error) {
       toast.add({
         severity: 'error',
@@ -52,12 +49,9 @@ const register = async () => {
       loading.value = false
       return
     }
-    // const { account } = loginInfo.data
-
     loading.value = false
     return router.push({ name: 'Index' })
   } catch (error: any) {
-    console.log(error)
     const { response } = error
     toast.add({
       severity: 'error',

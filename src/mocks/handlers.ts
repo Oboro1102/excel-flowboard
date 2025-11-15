@@ -17,7 +17,6 @@ export const handlers = [
                 id,
                 account,
                 password,
-                name: "",
             })
             return HttpResponse.json({
                 success: true,
@@ -30,7 +29,6 @@ export const handlers = [
         const data = await request.json()
         const { id, password } = data as { id: string, password: string }
         const target = users.filter(item => item.id === id)[0]
-        console.log(id, users)
         if (target) {
             target.password = password
             return HttpResponse.json({
@@ -49,11 +47,11 @@ export const handlers = [
         const { account, password } = data as { account: string; password: string }
         const target = users.filter(item => item.account === account)[0]
         if (target && target.password === password) {
-            const { name, id } = target
+            const { id } = target
             return HttpResponse.json({
                 success: true,
                 message: '登入成功',
-                data: { id, name }
+                data: { id }
             }, { status: 200 })
         } else {
             return HttpResponse.json(

@@ -11,14 +11,8 @@ export const useGlobalStore = defineStore('global', () => {
   const updateUser = () => {
     userInfo.value = decodeString(sessionStorage.getItem('a7b3c9d1e5f8') as string, 'z2y8x4w6v1u9')
   }
-  const boardConfigData = ref()
-  const saveBoard = (data: string) => {
-    sessionStorage.setItem('boardConfigData', data)
-  }
   return {
     userInfo,
     updateUser,
-    boardConfigData,
-    saveBoard,
   }
 })

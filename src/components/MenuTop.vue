@@ -21,13 +21,6 @@ const systemMenuItems = ref([
     },
   },
   {
-    label: '開啟舊檔',
-    icon: 'bi bi-folder2-open',
-    command: () => {
-      openFilesModeOn.value = true
-    },
-  },
-  {
     label: '更新密碼',
     icon: 'bi bi-shield-lock',
     command: () => {
@@ -48,13 +41,8 @@ const toggle = (event: any) => {
 }
 
 import { useVueFlow } from '@vue-flow/core'
-const { toObject } = useVueFlow()
 import { useGlobalStore } from '@/stores/index'
 const globalStore = useGlobalStore()
-const saveBoard = () => {
-  globalStore.saveBoard(JSON.stringify(toObject()))
-}
-
 // 表單驗證相關
 const showErrorInfo = ref({ personal: false, password: false })
 // 更新密碼提交相關
@@ -130,27 +118,6 @@ const updatePassword = async () => {
       }"
     />
     <Dialog
-      v-model:visible="openFilesModeOn"
-      dismissableMask
-      modal
-      header="開啟舊檔"
-      :draggable="false"
-      position="top"
-      :pt="{ root: { class: 'w-full max-w-md' } }"
-    >
-      <form>dkdkwekp</form>
-      <template #footer>
-        <Button
-          label="關閉"
-          text
-          size="small"
-          severity="secondary"
-          @click="openFilesModeOn = false"
-          autofocus
-        />
-      </template>
-    </Dialog>
-    <Dialog
       v-model:visible="settingModeOn"
       dismissableMask
       modal
@@ -221,13 +188,5 @@ const updatePassword = async () => {
         />
       </template>
     </Dialog>
-    <Button
-      text
-      size="small"
-      severity="secondary"
-      icon="bi bi-floppy"
-      v-tooltip.right="'儲存'"
-      @click="saveBoard"
-    />
   </header>
 </template>
