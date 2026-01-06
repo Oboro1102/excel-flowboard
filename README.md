@@ -31,10 +31,10 @@ v24.11.1
 - `assets` - 全站使用靜態資源。
 - `components` - 共用元件。
 - `layout` - 共用模板。
+- `mocks` - 模擬後端回應 API 呼叫使用。
 - `router` - 全站路由管理。
 - `stores` - 全站及共用元件狀態管理。
 - `utils` - 通用函式、套件設定檔、型別及正則...等封裝集結。
-- `composable` - vue 復用函式。
 - `views` - 「頁面」檔案。
 - package.json - 專案使用套件列表。
 - vite.config.ts - vite 設定檔。
