@@ -2,6 +2,10 @@
 
 由 [Vue(3.5.22)](https://vuejs.org/) 所構建，使用官方預設編譯器 [Vite](https://vitejs.dev/) 開發。
 
+## Demo 檔案
+
+可於 [public](https://github.com/Oboro1102/excel-flowboard/blob/main/public/demo.xlsx) 中下載。
+
 ## Nodejs 版本
 
 v24.11.1
