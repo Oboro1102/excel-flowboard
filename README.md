@@ -4,7 +4,7 @@
 
 ## Demo 檔案
 
-可於 [public](https://github.com/Oboro1102/excel-flowboard/blob/main/public/demo.xlsx) 中下載。
+可於 [public](https://github.com/Oboro1102/excel-flowboard/blob/main/public/) 中下載。
 
 ## Nodejs 版本
 
