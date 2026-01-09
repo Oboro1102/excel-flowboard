@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import { Button } from 'primevue'
-import LoadingArea from '@/components/LoadingArea.vue'
-const LayoutLogin = defineAsyncComponent({
-  loader: () => import('@/layout/LayoutLogin.vue'),
-  loadingComponent: LoadingArea,
-})
+import LayoutLogin from '@/layout/LayoutLogin.vue'
+
 const router = useRouter()
 </script>
 

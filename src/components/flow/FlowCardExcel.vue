@@ -4,7 +4,6 @@ import { ref, toRefs, watch, defineAsyncComponent } from 'vue'
 import { Handle, Position, useVueFlow } from '@vue-flow/core'
 import { handlerStyleOut } from '@/utils/dataMap'
 import LoadingArea from '@/components/LoadingArea.vue'
-import { toUnit } from '@primeuix/themes'
 const UploaderExcel = defineAsyncComponent({
   loader: () => import('@/components/flow/UploaderExcel.vue'),
   loadingComponent: LoadingArea,

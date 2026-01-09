@@ -5,18 +5,9 @@ import { Background } from '@vue-flow/background'
 import { panels } from '@/utils/dataMap'
 import { Button } from 'primevue'
 import LoadingArea from '@/components/LoadingArea.vue'
-const MenuTop = defineAsyncComponent({
-  loader: () => import('@/components/MenuTop.vue'),
-  loadingComponent: LoadingArea,
-})
-const FooterBar = defineAsyncComponent({
-  loader: () => import('@/components/FooterBar.vue'),
-  loadingComponent: LoadingArea,
-})
-const PanelUnits = defineAsyncComponent({
-  loader: () => import('@/components/flow/PanelUnits.vue'),
-  loadingComponent: LoadingArea,
-})
+import MenuTop from '@/components/MenuTop.vue'
+import FooterBar from '@/components/FooterBar.vue'
+import PanelUnits from '@/components/flow/PanelUnits.vue'
 const FlowEdgeWithButton = defineAsyncComponent({
   loader: () => import('@/components/flow/FlowEdgeWithButton.vue'),
   loadingComponent: LoadingArea,

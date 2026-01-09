@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, defineAsyncComponent } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { FloatLabel, InputText, Password, Button, Message, useToast } from 'primevue'
 import { API } from '@/api/index'
 import { encodeString } from '@/utils/commonFunction.ts'
-import LoadingArea from '@/components/LoadingArea.vue'
-const LayoutLogin = defineAsyncComponent({
-  loader: () => import('@/layout/LayoutLogin.vue'),
-  loadingComponent: LoadingArea,
-})
+import LayoutLogin from '@/layout/LayoutLogin.vue'
+
 const toast = useToast()
 const router = useRouter()
 

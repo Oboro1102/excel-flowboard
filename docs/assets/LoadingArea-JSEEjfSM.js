@@ -1,0 +1,1 @@
+import{J as e,Z as t,gt as n}from"./index-Bu07tFg0.js";var r=(e,t)=>{let n=e.__vccOpts||e;for(let[e,r]of t)n[e]=r;return n},i={},a={class:`flex items-center justify-center p-2`};function o(r,i){return n(),t(`div`,a,[...i[0]||=[e(`div`,{class:`loading loading--sm after:border-y-placeholderLight`},null,-1)]])}var s=r(i,[[`render`,o]]);export{s as t};

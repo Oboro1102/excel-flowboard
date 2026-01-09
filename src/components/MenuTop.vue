@@ -9,7 +9,6 @@ const router = useRouter()
 const toast = useToast()
 
 const settingModeOn = ref(false)
-const openFilesModeOn = ref(false)
 const systemMenu = ref()
 const systemMenuItems = ref([
   {
